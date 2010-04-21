@@ -184,6 +184,18 @@ CmpiArgs::addArg(const CmpiName &name, CMPIReal64 value)
 }
 
 void 
+CmpiArgs::addArg(const CmpiName &name, const char *value)
+{
+    CMPIStatus status = 
+        _data->ft->addArg(_data, name.c_str(), 
+                          reinterpret_cast<const CMPIValue *>(value),
+                          CMPI_chars);
+
+    if (status.rc != CMPI_RC_OK)
+        throw CmpiStatus(&status);
+}
+
+void 
 CmpiArgs::addArg(const CmpiName &name, const string &value)
 {
     CMPIStatus status = 

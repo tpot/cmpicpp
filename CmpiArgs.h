@@ -47,6 +47,7 @@ namespace CmpiCpp {
         void addArg(const CmpiName &name, CMPISint64 value);
         void addArg(const CmpiName &name, CMPIReal32 value);
         void addArg(const CmpiName &name, CMPIReal64 value);
+        void addArg(const CmpiName &name, const char *value);
         void addArg(const CmpiName &name, const string &value);
         // TODO: datetime, references, arrays, and arrays of references
 
