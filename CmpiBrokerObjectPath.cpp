@@ -7,6 +7,7 @@
 
 #include "CmpiBrokerObjectPath.h"
 #include "CmpiStatus.h"
+#include "CmpiData.h"
 
 using namespace CmpiCpp;
 
@@ -197,7 +198,7 @@ Broker::CmpiObjectPath::_driveGetClassQualifier(const CMPIObjectPath *, // op
         rc->msg = NULL;
     }
 
-    return nullData;
+    return CmpiData::nullData;
 }
 
 CMPIData 
@@ -211,7 +212,7 @@ Broker::CmpiObjectPath::_driveGetPropertyQualifier(const CMPIObjectPath *, // op
         rc->msg = NULL;
     }
 
-    return nullData;
+    return CmpiData::nullData;
 }
 
 CMPIData 
@@ -225,7 +226,7 @@ Broker::CmpiObjectPath::_driveGetMethodQualifier(const CMPIObjectPath *, // op
         rc->msg = NULL;
     }
 
-    return nullData;
+    return CmpiData::nullData;
 }
 
 CMPIData 
@@ -240,7 +241,7 @@ Broker::CmpiObjectPath::_driveGetParameterQualifier(const CMPIObjectPath *,// op
         rc->msg = NULL;
     }
 
-    return nullData;
+    return CmpiData::nullData;
 }
 	
 CMPIString *

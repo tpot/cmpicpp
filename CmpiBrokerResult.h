@@ -8,8 +8,8 @@
 #ifndef _CmpiBrokerResult_h
 #define _CmpiBrokerResult_h
 
-#include "CMPI/cmpidt.h"
-#include "CMPI/cmpift.h"
+#include "cmpidt.h"
+#include "cmpift.h"
 
 namespace CmpiCpp {
 

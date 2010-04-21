@@ -11,8 +11,8 @@
 // Include CMPI C interface
 
 extern "C" {
-#include "CMPI/cmpidt.h"
-#include "CMPI/cmpift.h"
+#include "cmpidt.h"
+#include "cmpift.h"
 }
 
 // Basic data types
@@ -35,7 +35,6 @@ extern "C" {
 #include "CmpiAssociationProvider.h"
 #include "CmpiMethodProvider.h"
 #include "CmpiIndicationProvider.h"
-#include "CmpiMBService.h"
 
 #endif // _CmpiCpp_h
 

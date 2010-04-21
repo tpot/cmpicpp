@@ -8,7 +8,7 @@
 #ifndef _CmpiContext_h
 #define _CmpiContext_h
 
-#include "CMPI/cmpidt.h"
+#include "cmpidt.h"
 
 namespace CmpiCpp {
 

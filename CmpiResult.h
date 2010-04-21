@@ -9,7 +9,7 @@
 #define _CmpiResult_h
 
 #include <string>
-#include "CMPI/cmpidt.h"
+#include "cmpidt.h"
 
 namespace CmpiCpp {
 

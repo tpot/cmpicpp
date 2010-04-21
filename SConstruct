@@ -13,8 +13,8 @@ my_env = Environment()
 
 prefix = ARGUMENTS.get('PREFIX', '/usr/local')
 
-my_env.Append(CCFLAGS = '-g -W -Wall -Wno-multichar -Werror',
-              CPPPATH = ['#CMPI'],
+my_env.Append(CCFLAGS = ['-g', '-W', '-Wall', '-Wno-multichar', '-Werror'],
+              CPPPATH = ['/usr/include/cmpi'],
               ENV = {'HOME': os.environ['HOME']},
               PREFIX = prefix)
 
@@ -30,7 +30,6 @@ libCmpiCpp_source = [
     'CmpiArgs.cpp',
     'CmpiEnumeration.cpp',
     'CmpiDateTime.cpp',
-    'CmpiBroker.cpp',
     'CmpiProvider.cpp',
     'CmpiInstanceProvider.cpp',
     'CmpiAssociationProvider.cpp',
@@ -41,6 +40,9 @@ libCmpiCpp_source = [
 libCmpiCpp = my_env.SharedLibrary(
     'libCmpiCpp',
     source = libCmpiCpp_source)
+
+my_env.Alias('install',
+             my_env.Install('$PREFIX/lib', libCmpiCpp))
 
 libCmpiCpp_headers = [
     'CmpiCpp.h',
@@ -55,7 +57,6 @@ libCmpiCpp_headers = [
     'CmpiArgs.h',
     'CmpiEnumeration.h',
     'CmpiDateTime.h',
-    'CmpiBroker.h',
     'CmpiProvider.h',
     'CmpiInstanceProvider.h',
     'CmpiAssociationProvider.h',
@@ -63,14 +64,9 @@ libCmpiCpp_headers = [
     'CmpiIndicationProvider.h',
 ]
 
-libCmpiCpp_CMPI_headers = [
-    'CMPI/cmpi_cql.h',
-    'CMPI/cmpidt.h',
-    'CMPI/cmpift.h',
-    'CMPI/cmpimacs.h',
-    'CMPI/cmpios.h',
-    'CMPI/cmpipl.h',
-]
+my_env.Alias('install',
+             my_env.Install('$PREFIX/include/cmpicpp', 
+                            libCmpiCpp_headers))
 
 # CmpiCppBroker library
 
@@ -91,6 +87,9 @@ libCmpiCppBroker = my_env.SharedLibrary(
     'libCmpiCppBroker',
     source = libCmpiCppBroker_source)
 
+my_env.Alias('install',
+             my_env.Install('$PREFIX/lib', libCmpiCppBroker))
+
 libCmpiCppBroker_headers = [
     'CmpiCppBroker.h',
     'CmpiBrokerBroker.h',
@@ -105,16 +104,6 @@ libCmpiCppBroker_headers = [
     'UnimplementedFT.h',
 ]
 
-# Install
-
-my_env.Alias('install',
-             my_env.Install('$PREFIX/lib', [libCmpiCpp, libCmpiCppBroker]))
-
-
 my_env.Alias('install',
              my_env.Install('$PREFIX/include/cmpicpp', 
-                            [libCmpiCpp_headers, libCmpiCppBroker_headers]))
-
-my_env.Alias('install',
-             my_env.Install('$PREFIX/include/cmpicpp/CMPI',
-                            libCmpiCpp_CMPI_headers))
+                            libCmpiCppBroker_headers))

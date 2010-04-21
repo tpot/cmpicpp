@@ -10,8 +10,8 @@
 
 #include <string>
 
-#include "CMPI/cmpidt.h"
-#include "CMPI/cmpift.h"
+#include "cmpidt.h"
+#include "cmpift.h"
 
 #include "CmpiBrokerObjectPath.h"
 

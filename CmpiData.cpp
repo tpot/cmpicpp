@@ -5,8 +5,8 @@
 // Author: Tim Potter <tpot@hp.com>
 //
 
-#include "CMPI/cmpidt.h"
-#include "CMPI/cmpift.h"
+#include "cmpidt.h"
+#include "cmpift.h"
 
 #include "CmpiData.h"
 #include "CmpiArray.h"

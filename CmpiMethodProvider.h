@@ -8,7 +8,7 @@
 #ifndef _CmpiMethodProvider_h
 #define _CmpiMethodProvider_h
 
-#include "CMPI/cmpift.h"
+#include "cmpift.h"
 #include "CmpiProvider.h"
 
 namespace CmpiCpp {

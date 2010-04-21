@@ -9,7 +9,7 @@
 #define _CmpiObjectPath_h
 
 #include <string>
-#include "CMPI/cmpidt.h"
+#include "cmpidt.h"
 
 namespace CmpiCpp {
 

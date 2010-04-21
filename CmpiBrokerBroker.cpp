@@ -23,13 +23,13 @@ Broker::CmpiBroker::CmpiBroker()
     _brokerFT.attachThread = _driveAttachThread;
     _brokerFT.detachThread = _driveDetachThread;
     _brokerFT.deliverIndication = _driveDeliverIndication;
-    _brokerFT.enumInstanceNames = _driveEnumInstanceNames;
+    _brokerFT.enumerateInstanceNames = _driveEnumInstanceNames;
     _brokerFT.getInstance = _driveGetInstance;
     _brokerFT.createInstance = _driveCreateInstance;
     _brokerFT.modifyInstance = _driveModifyInstance;
     _brokerFT.deleteInstance = _driveDeleteInstance;
     _brokerFT.execQuery = _driveExecQuery;
-    _brokerFT.enumInstances = _driveEnumInstances;
+    _brokerFT.enumerateInstances = _driveEnumInstances;
     _brokerFT.associators = _driveAssociators;
     _brokerFT.associatorNames = _driveAssociatorNames;
     _brokerFT.references = _driveReferences;

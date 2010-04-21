@@ -8,8 +8,8 @@
 #ifndef _CmpiBrokerString_h
 #define _CmpiBrokerString_h
 
-#include "CMPI/cmpidt.h"
-#include "CMPI/cmpift.h"
+#include "cmpidt.h"
+#include "cmpift.h"
 
 namespace CmpiCpp {
 
@@ -47,7 +47,7 @@ namespace CmpiCpp {
             static CMPIString* _driveClone(const CMPIString* st, 
                                            CMPIStatus* rc);
 
-            static char *_driveGetCharPtr(const CMPIString* st, CMPIStatus* rc);
+            static const char *_driveGetCharPtr(const CMPIString* st, CMPIStatus* rc);
         };
 
     } // namespace Broker

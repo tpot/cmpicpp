@@ -10,9 +10,8 @@
 
 #include <string>
 #include <pthread.h>
-#include "platform.h"
 
-#include "CMPI/cmpidt.h"
+#include "cmpidt.h"
 
 namespace CmpiCpp {
 

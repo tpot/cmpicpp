@@ -9,10 +9,9 @@
 #define _CmpiDateTime_h
 
 #include <string>
-#include "platform.h"
 #include <time.h>
 
-#include "CMPI/cmpift.h"
+#include "cmpift.h"
 
 namespace CmpiCpp {
 

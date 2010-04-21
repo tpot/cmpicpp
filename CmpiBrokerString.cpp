@@ -48,7 +48,7 @@ Broker::CmpiString::_driveClone(const CMPIString *st, CMPIStatus *rc)
     return obj->clone(rc);
 }
 
-char *
+const char *
 Broker::CmpiString::_driveGetCharPtr(const CMPIString *st, CMPIStatus *rc)
 {
     Broker::CmpiString *obj = reinterpret_cast<Broker::CmpiString *>(st->hdl);
