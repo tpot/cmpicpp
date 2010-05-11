@@ -28,6 +28,7 @@ namespace CmpiCpp {
     using namespace std;
 
     class CmpiData;
+    class CmpiBroker;
     class CmpiObjectPath;
 
     class CmpiArray {
@@ -91,7 +92,7 @@ namespace CmpiCpp {
 
     ostream &operator<<(ostream &output, const CmpiArray &obj);
 
-    CmpiArray makeCmpiArray(const CMPIBroker *broker, int maxsize,
+    CmpiArray makeCmpiArray(const CmpiBroker &broker, int maxsize,
                             CMPIType type);
 
     bool CMPIArrayCompare(const CMPIArray *a, const CMPIArray *b);

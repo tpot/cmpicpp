@@ -21,6 +21,7 @@
 
 #include "cmpimacs.h"
 #include "CmpiStatus.h"
+#include "CmpiBroker.h"
 
 using namespace std;
 using namespace CmpiCpp;
@@ -67,12 +68,12 @@ string CmpiStatus::getMsg() const
     return _msg;
 }
 
-CMPIStatus CmpiStatus::toCMPI(const CMPIBroker *broker) const
+CMPIStatus CmpiStatus::toCMPI(const CmpiBroker &broker) const
 {
     CMPIStatus result;
 
     result.rc = _rc;
-    result.msg = CMNewString(broker, _msg.c_str(), NULL);
+    result.msg = CMNewString(broker.toCMPI(), _msg.c_str(), NULL);
 
     return result;
 }

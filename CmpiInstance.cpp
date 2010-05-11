@@ -25,6 +25,7 @@
 #include "CmpiName.h"
 #include "CmpiArray.h"
 #include "CmpiStatus.h"
+#include "CmpiBroker.h"
 #include "CmpiInstance.h"
 #include "CmpiDateTime.h"
 #include "CmpiObjectPath.h"
@@ -490,12 +491,12 @@ CmpiInstance &CmpiInstance::operator=(const CmpiInstance &rhs)
 }
 
 CmpiInstance
-CmpiCpp::makeCmpiInstance(const CMPIBroker *broker, const CmpiObjectPath &path)
+CmpiCpp::makeCmpiInstance(const CmpiBroker &broker, const CmpiObjectPath &path)
 {
     CMPIStatus status = { CMPI_RC_OK, NULL };
+    const CMPIBroker *b = broker.toCMPI();
     
-    CMPIInstance *inst = 
-        broker->eft->newInstance(broker, path.toCMPI(), &status);
+    CMPIInstance *inst = b->eft->newInstance(b, path.toCMPI(), &status);
 
     if (status.rc != CMPI_RC_OK)
         throw CmpiStatus(&status);   

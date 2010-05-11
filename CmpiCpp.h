@@ -40,6 +40,7 @@ extern "C" {
 #include "CmpiArgs.h"
 #include "CmpiEnumeration.h"
 #include "CmpiDateTime.h"
+#include "CmpiBroker.h"
 
 // Provider types
 

@@ -44,8 +44,8 @@ namespace CmpiCpp {
 
     public:
 
-        CmpiCppClient(const CMPIBroker *broker, const string &socketPath);
-        CmpiCppClient(const CMPIBroker *broker, const string &url, 
+        CmpiCppClient(const CmpiBroker &broker, const string &socketPath);
+        CmpiCppClient(const CmpiBroker &broker, const string &url, 
                       const string &user, const string &pass);
         
         ~CmpiCppClient();
@@ -60,7 +60,7 @@ namespace CmpiCpp {
 
     private:
 
-        const CMPIBroker *_broker;
+        const CmpiBroker _broker;
         const string _socketPath;
         const string _url, _user, _pass;
 
@@ -101,7 +101,7 @@ namespace CmpiCpp {
 
     // Factory function
 
-    CmpiCppClient *makeCmpiCppClient(const CMPIBroker *broker);
+    CmpiCppClient *makeCmpiCppClient(const CmpiBroker &broker);
 };
 
 #endif // _CmpiCppClient_h

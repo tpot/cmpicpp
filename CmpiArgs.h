@@ -33,6 +33,8 @@ namespace CmpiCpp {
     // Wrap a CMPIArgs
     //
 
+    class CmpiBroker;
+
     class CmpiArgs {
 
     public:
@@ -75,7 +77,7 @@ namespace CmpiCpp {
 
     // Factory function
 
-    CmpiArgs makeCmpiArgs(const CMPIBroker *broker);
+    CmpiArgs makeCmpiArgs(const CmpiBroker &broker);
 
 } // namespace CmpiCpp
 

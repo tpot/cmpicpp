@@ -22,6 +22,7 @@
 #include "CmpiData.h"
 #include "CmpiArray.h"
 #include "CmpiStatus.h"
+#include "CmpiBroker.h"
 #include "CmpiObjectPath.h"
 
 #include <sstream>
@@ -365,15 +366,16 @@ ostream &CmpiCpp::operator<<(ostream &output, const CmpiArray &obj)
     return output;
 }
 
-CmpiArray CmpiCpp::makeCmpiArray(const CMPIBroker *broker, int maxSize, 
+CmpiArray CmpiCpp::makeCmpiArray(const CmpiBroker &broker, int maxSize, 
                                  CMPIType type)
 {
     CMPIStatus status = { CMPI_RC_OK, NULL };
+    const CMPIBroker *b = broker.toCMPI();
 
     if (type == CMPI_string)
         type = CMPI_chars;
 
-    CMPIArray *array = broker->eft->newArray(broker, maxSize, type, &status);
+    CMPIArray *array = b ->eft->newArray(b, maxSize, type, &status);
 
     if (status.rc != CMPI_RC_OK)
         throw CmpiStatus(&status);    

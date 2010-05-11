@@ -26,6 +26,7 @@
 #include "CmpiData.h"
 #include "CmpiName.h"
 #include "CmpiStatus.h"
+#include "CmpiBroker.h"
 #include "CmpiObjectPath.h"
 
 using namespace std;
@@ -469,11 +470,11 @@ bool CmpiObjectPath::empty() const
         getClassName().empty() && getKeyCount() == 0;
 }
 
-bool CmpiObjectPath::classPathIsA(const CMPIBroker *broker, const string &parentClassName) 
+bool CmpiObjectPath::classPathIsA(const CmpiBroker &broker, const string &parentClassName) 
 {
     CMPIStatus status = { CMPI_RC_OK, NULL };
 
-    CMPIBoolean isa = CMClassPathIsA(broker, _data, parentClassName.c_str(), &status);
+    CMPIBoolean isa = CMClassPathIsA(broker.toCMPI(), _data, parentClassName.c_str(), &status);
         
     if (status.rc != CMPI_RC_OK)
         throw CmpiStatus(&status);
@@ -488,14 +489,15 @@ ostream &CmpiCpp::operator<<(ostream &output, const CmpiObjectPath &obj)
 }
 
 CmpiObjectPath 
-CmpiCpp::makeCmpiObjectPath(const CMPIBroker *broker,
+CmpiCpp::makeCmpiObjectPath(const CmpiBroker &broker,
                             const CmpiName &nameSpace,
                             const CmpiName &className)
 {
     CMPIStatus status = { CMPI_RC_OK, NULL };
-
-    CMPIObjectPath *path = broker->eft->newObjectPath
-        (broker, nameSpace.c_str(), className.c_str(), &status);
+    const CMPIBroker *b = broker.toCMPI();
+    
+    CMPIObjectPath *path = b->eft->newObjectPath
+        (b, nameSpace.c_str(), className.c_str(), &status);
 
     if (status.rc != CMPI_RC_OK)
         throw CmpiStatus(&status);
@@ -509,7 +511,7 @@ CmpiCpp::makeCmpiObjectPath(const CMPIBroker *broker,
 
 
 CmpiObjectPath 
-CmpiCpp::makeCmpiObjectPath(const CMPIBroker *broker,
+CmpiCpp::makeCmpiObjectPath(const CmpiBroker &broker,
                             const CmpiName &nameSpace,
                             const CmpiName &className,
                             const CmpiName &hostName)
@@ -523,7 +525,7 @@ CmpiCpp::makeCmpiObjectPath(const CMPIBroker *broker,
 
 
 CmpiObjectPath 
-CmpiCpp::makeCmpiObjectPath(const CMPIBroker *broker)
+CmpiCpp::makeCmpiObjectPath(const CmpiBroker &broker)
 {
     return makeCmpiObjectPath(broker, "", "");
 }

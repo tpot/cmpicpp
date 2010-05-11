@@ -57,7 +57,7 @@ _opensockCB(void *clientp, curlsocktype, struct curl_sockaddr *caddr)
     return socket(caddr->family, caddr->socktype, caddr->protocol);
 }
 
-CmpiCppClient::CmpiCppClient(const CMPIBroker *broker, const string &socketPath)
+CmpiCppClient::CmpiCppClient(const CmpiBroker &broker, const string &socketPath)
     : _broker(broker), _socketPath(socketPath)
 {
     // Initialise curl handle
@@ -73,7 +73,7 @@ CmpiCppClient::CmpiCppClient(const CMPIBroker *broker, const string &socketPath)
 }
 
 CmpiCppClient::
-CmpiCppClient(const CMPIBroker *broker, const string &url, 
+CmpiCppClient(const CmpiBroker &broker, const string &url, 
               const string &user, const string &pass)
     : _broker(broker), _url(url), _user(user), _pass(pass)
 {

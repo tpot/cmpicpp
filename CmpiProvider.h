@@ -31,6 +31,7 @@ namespace CmpiCpp {
 
     class CmpiName;
     class CmpiArray;
+    class CmpiBroker;
     class CmpiContext;
     class CmpiInstance;
     class CmpiObjectPath;
@@ -62,7 +63,7 @@ namespace CmpiCpp {
         int decRefcount();
         int getRefcount() const;
 
-        virtual const CMPIBroker *getBroker() = 0;
+        virtual const CmpiBroker getBroker() = 0;
 
         const char *getName() const;
         void setName(const char *name);

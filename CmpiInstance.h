@@ -28,6 +28,7 @@ namespace CmpiCpp {
 
     class CmpiName;
     class CmpiArray;
+    class CmpiBroker;
     class CmpiDateTime;
     class CmpiObjectPath;
 
@@ -94,7 +95,7 @@ namespace CmpiCpp {
 
     // Factory function
 
-    CmpiInstance makeCmpiInstance(const CMPIBroker *broker,
+    CmpiInstance makeCmpiInstance(const CmpiBroker &broker,
                                   const CmpiObjectPath &path);
 
 } // namespace CmpiCpp

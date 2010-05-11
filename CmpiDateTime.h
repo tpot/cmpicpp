@@ -35,6 +35,8 @@ namespace CmpiCpp {
     // An object representing a CMPI datetime.
     //
 
+    class CmpiBroker;
+
     class CmpiDateTime {
 
     public:
@@ -76,17 +78,17 @@ namespace CmpiCpp {
 
     ostream &operator<<(ostream &output, const CmpiDateTime &obj);
 
-    CmpiDateTime makeCmpiDateTime(const CMPIBroker *broker);
+    CmpiDateTime makeCmpiDateTime(const CmpiBroker &broker);
 
-    CmpiDateTime makeCmpiDateTime(const CMPIBroker *broker, uint64_t binTime,
+    CmpiDateTime makeCmpiDateTime(const CmpiBroker &broker, uint64_t binTime,
                                   bool isInterval);
 
-    CmpiDateTime makeCmpiDateTime(const CMPIBroker *broker, 
+    CmpiDateTime makeCmpiDateTime(const CmpiBroker &broker, 
                                   const string &utcTime);
 
-    CmpiDateTime makeCmpiDateTime(const CMPIBroker *broker, time_t t);
+    CmpiDateTime makeCmpiDateTime(const CmpiBroker &broker, time_t t);
 
-    CmpiDateTime makeCurrentDateTime(const CMPIBroker *broker);
+    CmpiDateTime makeCurrentDateTime(const CmpiBroker &broker);
 
 } // namespace CmpiCpp
 

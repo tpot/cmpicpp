@@ -22,6 +22,7 @@
 
 #include "CmpiArgs.h"
 #include "CmpiStatus.h"
+#include "CmpiBroker.h"
 
 using namespace std;
 using namespace CmpiCpp;
@@ -273,11 +274,12 @@ CmpiArgs::toCMPI() const
 // Factory function
 
 CmpiArgs 
-CmpiCpp::makeCmpiArgs(const CMPIBroker *broker)
+CmpiCpp::makeCmpiArgs(const CmpiBroker &broker)
 {
     CMPIStatus status = { CMPI_RC_OK, NULL };
+    const CMPIBroker *b = broker.toCMPI();
 
-    CMPIArgs *args = broker->eft->newArgs( broker, &status);
+    CMPIArgs *args = b->eft->newArgs(b, &status);
 
     if (status.rc != CMPI_RC_OK)
         throw CmpiStatus(&status);

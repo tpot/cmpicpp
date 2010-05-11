@@ -29,6 +29,7 @@ namespace CmpiCpp {
 
     class CmpiName;
     class CmpiData;
+    class CmpiBroker;
 
     //
     // Wrap a CMPIObjectPath
@@ -56,7 +57,7 @@ namespace CmpiCpp {
         CmpiName getClassName() const;
         void setClassName(const CmpiName &className);
 
-        bool classPathIsA(const CMPIBroker *broker, const string &parentClassName);
+        bool classPathIsA(const CmpiBroker &broker, const string &parentClassName);
 
         bool empty() const;
         string str() const;
@@ -102,13 +103,13 @@ namespace CmpiCpp {
 
     ostream &operator<<(ostream &output, const CmpiObjectPath &obj);
 
-    CmpiObjectPath makeCmpiObjectPath(const CMPIBroker *broker);
+    CmpiObjectPath makeCmpiObjectPath(const CmpiBroker &broker);
 
-    CmpiObjectPath makeCmpiObjectPath(const CMPIBroker *broker,
+    CmpiObjectPath makeCmpiObjectPath(const CmpiBroker &broker,
                                       const CmpiName &nameSpace,
                                       const CmpiName &className);
 
-    CmpiObjectPath makeCmpiObjectPath(const CMPIBroker *broker,
+    CmpiObjectPath makeCmpiObjectPath(const CmpiBroker &broker,
                                       const CmpiName &nameSpace,
                                       const CmpiName &className,
                                       const CmpiName &hostName);

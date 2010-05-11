@@ -23,15 +23,17 @@
 using namespace std;
 using namespace CmpiCpp;
 
-CmpiCppClient::CmpiCppClient(const CMPIBroker *, // broker
+CmpiCppClient::CmpiCppClient(const CmpiBroker &, // broker
                              const string &)     // socketPath
+    : _broker(NULL)
 {
 }
 
-CmpiCppClient::CmpiCppClient(const CMPIBroker *, // broker
+CmpiCppClient::CmpiCppClient(const CmpiBroker &, // broker
                              const string &,     // url
                              const string &,     // user
                              const string &)     // pass
+    : _broker(NULL)
 {
 }
 

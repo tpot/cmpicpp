@@ -48,6 +48,7 @@ libCmpiCpp_source = [
     'CmpiAssociationProvider.cpp',
     'CmpiMethodProvider.cpp',
     'CmpiIndicationProvider.cpp',
+    'CmpiBroker.cpp',
 ]
 
 libCmpiCpp = my_env.SharedLibrary(
@@ -75,6 +76,7 @@ libCmpiCpp_headers = [
     'CmpiAssociationProvider.h',
     'CmpiMethodProvider.h',
     'CmpiIndicationProvider.h',
+    'CmpiBroker.h',
 ]
 
 my_env.Alias('install',

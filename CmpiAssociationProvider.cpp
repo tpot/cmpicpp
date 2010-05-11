@@ -20,6 +20,7 @@
 #include "CmpiName.h"
 #include "CmpiResult.h"
 #include "CmpiStatus.h"
+#include "CmpiBroker.h"
 #include "CmpiContext.h"
 #include "CmpiInstance.h"
 #include "CmpiObjectPath.h"
@@ -86,13 +87,13 @@ CmpiAssociationProvider::_driveCleanup(CMPIAssociationMI *mi,
 
     } catch (CmpiStatus &s) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, s.getRC(), s.getMsg().c_str());
+            (p->getBroker().toCMPI(), &status, s.getRC(), s.getMsg().c_str());
     } catch (exception &x) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, CMPI_RC_ERR_FAILED, x.what());
+            (p->getBroker().toCMPI(), &status, CMPI_RC_ERR_FAILED, x.what());
     } catch (...) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, CMPI_RC_ERR_FAILED, "unknown exception");
+            (p->getBroker().toCMPI(), &status, CMPI_RC_ERR_FAILED, "unknown exception");
     }
 
     return status;
@@ -128,13 +129,13 @@ CmpiAssociationProvider::_driveAssociators(CMPIAssociationMI *mi,
 
     } catch (CmpiStatus &s) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, s.getRC(), s.getMsg().c_str());
+            (p->getBroker().toCMPI(), &status, s.getRC(), s.getMsg().c_str());
     } catch (exception &x) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, CMPI_RC_ERR_FAILED, x.what());
+            (p->getBroker().toCMPI(), &status, CMPI_RC_ERR_FAILED, x.what());
     } catch (...) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, CMPI_RC_ERR_FAILED, "unknown exception");
+            (p->getBroker().toCMPI(), &status, CMPI_RC_ERR_FAILED, "unknown exception");
     }
 
     return status;
@@ -168,13 +169,13 @@ CmpiAssociationProvider::_driveAssociatorNames(CMPIAssociationMI *mi,
 
     } catch (CmpiStatus &s) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, s.getRC(), s.getMsg().c_str());
+            (p->getBroker().toCMPI(), &status, s.getRC(), s.getMsg().c_str());
     } catch (exception &x) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, CMPI_RC_ERR_FAILED, x.what());
+            (p->getBroker().toCMPI(), &status, CMPI_RC_ERR_FAILED, x.what());
     } catch (...) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, CMPI_RC_ERR_FAILED, "unknown exception");
+            (p->getBroker().toCMPI(), &status, CMPI_RC_ERR_FAILED, "unknown exception");
     }
 
     return status;
@@ -206,13 +207,13 @@ CmpiAssociationProvider::_driveReferences(CMPIAssociationMI *mi,
 
     } catch (CmpiStatus &s) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, s.getRC(), s.getMsg().c_str());
+            (p->getBroker().toCMPI(), &status, s.getRC(), s.getMsg().c_str());
     } catch (exception &x) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, CMPI_RC_ERR_FAILED, x.what());
+            (p->getBroker().toCMPI(), &status, CMPI_RC_ERR_FAILED, x.what());
     } catch (...) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, CMPI_RC_ERR_FAILED, "unknown exception");
+            (p->getBroker().toCMPI(), &status, CMPI_RC_ERR_FAILED, "unknown exception");
     }
 
     return status;
@@ -242,13 +243,13 @@ CmpiAssociationProvider::_driveReferenceNames(CMPIAssociationMI *mi,
 
     } catch (CmpiStatus &s) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, s.getRC(), s.getMsg().c_str());
+            (p->getBroker().toCMPI(), &status, s.getRC(), s.getMsg().c_str());
     } catch (exception &x) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, CMPI_RC_ERR_FAILED, x.what());
+            (p->getBroker().toCMPI(), &status, CMPI_RC_ERR_FAILED, x.what());
     } catch (...) {
         CMSetStatusWithChars
-            (p->getBroker(), &status, CMPI_RC_ERR_FAILED, "unknown exception");
+            (p->getBroker().toCMPI(), &status, CMPI_RC_ERR_FAILED, "unknown exception");
     }
 
     return status;

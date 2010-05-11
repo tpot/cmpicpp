@@ -31,6 +31,8 @@ namespace CmpiCpp {
     // Wrap a CMPIrc return code
     //
 
+    class CmpiBroker;
+
     class CmpiStatus {
 
     public:
@@ -48,7 +50,7 @@ namespace CmpiCpp {
 
         string str() const;
 
-        CMPIStatus toCMPI(const CMPIBroker *broker) const;
+        CMPIStatus toCMPI(const CmpiBroker &broker) const;
 
         bool operator==(const CmpiStatus &status) const;
         bool operator!=(const CmpiStatus &status) const;

@@ -18,6 +18,7 @@
 //
 
 #include "CmpiStatus.h"
+#include "CmpiBroker.h"
 #include "CmpiDateTime.h"
 
 using namespace std;
@@ -155,11 +156,12 @@ bool CmpiDateTime::operator!=(const CmpiDateTime &obj) const
 }
 
 CmpiDateTime 
-CmpiCpp::makeCmpiDateTime(const CMPIBroker *broker)
+CmpiCpp::makeCmpiDateTime(const CmpiBroker &broker)
 {
     CMPIStatus status = { CMPI_RC_OK, NULL };
+    const CMPIBroker *b = broker.toCMPI();
 
-    CMPIDateTime *dt = broker->eft->newDateTime(broker, &status);
+    CMPIDateTime *dt = b->eft->newDateTime(b, &status);
 
     if (status.rc != CMPI_RC_OK)
         throw CmpiStatus(&status);
@@ -170,14 +172,14 @@ CmpiCpp::makeCmpiDateTime(const CMPIBroker *broker)
 }
 
 CmpiDateTime 
-CmpiCpp::makeCmpiDateTime(const CMPIBroker *broker, uint64_t binTime,
+CmpiCpp::makeCmpiDateTime(const CmpiBroker &broker, uint64_t binTime,
                           bool isInterval)
 {
     CMPIStatus status = { CMPI_RC_OK, NULL };
+    const CMPIBroker *b = broker.toCMPI();
 
     CMPIDateTime *dt = 
-        broker->eft->newDateTimeFromBinary(broker, binTime, isInterval, 
-                                           &status);
+        b->eft->newDateTimeFromBinary(b, binTime, isInterval, &status);
 
     if (status.rc != CMPI_RC_OK)
         throw CmpiStatus(&status);
@@ -188,12 +190,13 @@ CmpiCpp::makeCmpiDateTime(const CMPIBroker *broker, uint64_t binTime,
 }
 
 CmpiDateTime 
-CmpiCpp::makeCmpiDateTime(const CMPIBroker *broker, const string &utcTime)
+CmpiCpp::makeCmpiDateTime(const CmpiBroker &broker, const string &utcTime)
 {
     CMPIStatus status = { CMPI_RC_OK, NULL };
+    const CMPIBroker *b = broker.toCMPI();
 
     CMPIDateTime *dt = 
-        broker->eft->newDateTimeFromChars(broker, utcTime.c_str(), &status);
+        b->eft->newDateTimeFromChars(b, utcTime.c_str(), &status);
 
     if (status.rc != CMPI_RC_OK)
         throw CmpiStatus(&status);
@@ -204,13 +207,13 @@ CmpiCpp::makeCmpiDateTime(const CMPIBroker *broker, const string &utcTime)
 }
 
 CmpiDateTime
-CmpiCpp::makeCmpiDateTime(const CMPIBroker *broker, time_t t)
+CmpiCpp::makeCmpiDateTime(const CmpiBroker &broker, time_t t)
 {
     return makeCmpiDateTime(broker, (uint64_t)t * cmpiBinFormatMsecs, false);
 }
 
 CmpiDateTime 
-CmpiCpp::makeCurrentDateTime(const CMPIBroker *broker)
+CmpiCpp::makeCurrentDateTime(const CmpiBroker &broker)
 {
     time_t now = time(NULL);
 
