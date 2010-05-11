@@ -38,8 +38,8 @@ CmpiInstanceProvider::CmpiInstanceProvider()
     _instanceMIFT.miName = _name;
 
     _instanceMIFT.cleanup = _driveCleanup;
-    _instanceMIFT.enumerateInstanceNames = _driveEnumInstanceNames;
-    _instanceMIFT.enumerateInstances = _driveEnumInstances;
+    _instanceMIFT.enumInstanceNames = _driveEnumInstanceNames;
+    _instanceMIFT.enumInstances = _driveEnumInstances;
     _instanceMIFT.getInstance = _driveGetInstance;
     _instanceMIFT.createInstance = _driveCreateInstance;
     _instanceMIFT.modifyInstance = _driveModifyInstance;
