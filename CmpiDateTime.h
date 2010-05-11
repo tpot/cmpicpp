@@ -21,6 +21,8 @@
 #define _CmpiDateTime_h
 
 #include <string>
+
+#include <stdint.h>
 #include <time.h>
 
 #include "cmpift.h"
