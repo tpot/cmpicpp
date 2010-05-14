@@ -350,6 +350,19 @@ CmpiBroker::makeCmpiInstance(const CmpiObjectPath &path)
     return CmpiInstance(inst);
 }
 
+CmpiArgs
+CmpiBroker::makeArgs()
+{
+    CMPIStatus status = { CMPI_RC_OK, NULL };
+    
+    CMPIArgs *args = _data->eft->newArgs(_data, &status);
+
+    if (status.rc != CMPI_RC_OK)
+        throw CmpiStatus(&status);   
+
+    return CmpiArgs(args);
+}    
+
 //
 // Local variables:
 // mode: c++

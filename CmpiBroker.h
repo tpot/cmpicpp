@@ -80,6 +80,8 @@ namespace CmpiCpp {
 
         // Factory functions
 
+        CmpiArgs makeArgs();
+
         CmpiDateTime makeCmpiDateTime();
         CmpiDateTime makeCmpiDateTime(time_t t);
         CmpiDateTime makeCmpiDateTime(const string &utcTime);
