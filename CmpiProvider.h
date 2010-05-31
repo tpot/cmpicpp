@@ -50,7 +50,7 @@ namespace CmpiCpp {
 
         enum unloadBehaviour {
             okToUnload,         // CMPI_RC_OK, default
-            doNotUnload,        // CMPI_RC_DO_NOT_UNLOAD
+            doNotUnloadNow,     // CMPI_RC_DO_NOT_UNLOAD
             neverUnload,        // CMPI_RC_NEVER_UNLOAD
         };
 

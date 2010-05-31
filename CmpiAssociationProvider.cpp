@@ -73,7 +73,7 @@ CmpiAssociationProvider::_driveCleanup(CMPIAssociationMI *mi,
             switch (p->unloadOK(context)) {
             case okToUnload:
                 break;
-            case doNotUnload:
+            case doNotUnloadNow:
                 CMReturn(CMPI_RC_DO_NOT_UNLOAD);
             case neverUnload:
                 CMReturn(CMPI_RC_NEVER_UNLOAD);
