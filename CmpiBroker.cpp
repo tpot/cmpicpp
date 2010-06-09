@@ -189,22 +189,20 @@ CmpiBroker::invokeMethod(const CmpiContext &context,
    return CmpiData( dataPtr);
 }
 
-CMPIStatus 
-CmpiBroker::deliverIndication(const CmpiContext & context,
-                              const CmpiName & nameSpace,
+void
+CmpiBroker::deliverIndication(const CmpiContext &context,
+                              const CmpiName &nameSpace,
                               const CmpiInstance &indication)
 {
    CMPIStatus st = _data->bft->deliverIndication(_data, 
-                                                   context.toCMPI(), 
-                                                   nameSpace.str().c_str(), 
-                                                   indication.toCMPI());
+                                                 context.toCMPI(), 
+                                                 nameSpace.str().c_str(), 
+                                                 indication.toCMPI());
    
    if (st.rc != CMPI_RC_OK) {
      CmpiStatus s(&st);
      throw s;
    }
-
-   return st;
 }
 
 bool 

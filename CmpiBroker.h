@@ -71,9 +71,9 @@ namespace CmpiCpp {
                               const CmpiArgs &in,
                               CmpiArgs &out);
 
-        CMPIStatus deliverIndication(const CmpiContext & context,
-                                     const CmpiName & nameSpace,
-                                     const CmpiInstance &indication);
+        void deliverIndication(const CmpiContext &context,
+                               const CmpiName &nameSpace,
+                               const CmpiInstance &indication);
 
         bool classPathIsA(const CmpiObjectPath &path,
                           const string &parentClassName);
