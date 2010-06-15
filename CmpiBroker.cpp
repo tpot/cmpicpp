@@ -349,7 +349,7 @@ CmpiBroker::makeCmpiInstance(const CmpiObjectPath &path)
 }
 
 CmpiArgs
-CmpiBroker::makeArgs()
+CmpiBroker::makeCmpiArgs()
 {
     CMPIStatus status = { CMPI_RC_OK, NULL };
     

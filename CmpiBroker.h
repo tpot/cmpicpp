@@ -80,7 +80,7 @@ namespace CmpiCpp {
 
         // Factory functions
 
-        CmpiArgs makeArgs();
+        CmpiArgs makeCmpiArgs();
 
         CmpiDateTime makeCmpiDateTime();
         CmpiDateTime makeCmpiDateTime(time_t t);
