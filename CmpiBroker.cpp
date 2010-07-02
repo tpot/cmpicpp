@@ -29,8 +29,6 @@
 #include "CmpiObjectPath.h"
 #include "CmpiEnumeration.h"
 
-#include "CmpiCppClient.h"
-
 using namespace std;
 using namespace CmpiCpp;
 
@@ -76,52 +74,41 @@ CmpiBroker::getInstance(const CmpiContext &context,
                         const CmpiObjectPath &path,
                         const char **properties)
 {
-   CmpiCppClient *client = makeCmpiCppClient(_data);
-
-   if (client != NULL) {
-
-     try {
-       CmpiInstance result(client->getInstance(context, path, properties));
-       delete client;
-       return result;
-     } catch (...) {
-       delete client;
-       throw;
-     }
-
-   } else {
-
-     CMPIStatus st = { CMPI_RC_OK, NULL };
-     CMPIObjectPath * cop = path.toCMPI();
-   
-     CMPIInstance *ci = _data->bft->getInstance( _data, context.toCMPI(), cop, properties, &st);
-
-     if (st.rc!=CMPI_RC_OK) {
-       CmpiStatus s(&st);
-       throw s;
-     }
-
-     return CmpiInstance( ci);
-   }
+    CMPIStatus st = { CMPI_RC_OK, NULL };
+    
+    CMPIInstance *ci = _data->bft->getInstance(_data, 
+                                               context.toCMPI(), 
+                                               cop.toCMPI(), 
+                                               properties, 
+                                               &st);
+    
+    if (st.rc != CMPI_RC_OK) {
+        CmpiStatus s(&st);
+        throw s;
+    }
+    
+    return CmpiInstance( ci);
 }
 
 CmpiEnumeration 
 CmpiBroker::enumInstanceNames(const CmpiContext &context,
                               const CmpiObjectPath &path)
 {
-   CMPIEnumeration *en;
+    CMPIEnumeration *en;
 
-   CMPIStatus st = { CMPI_RC_OK, NULL };
-   CMPIObjectPath * cop = path.toCMPI();
+    CMPIStatus st = { CMPI_RC_OK, NULL };
    
-   en = _data->bft->enumInstanceNames(_data, context.toCMPI(), cop, &st);
+    en = _data->bft->enumInstanceNames(_data, 
+                                       context.toCMPI(), 
+                                       cop.toCMPI(), 
+                                       &st);
    
-   if (st.rc != CMPI_RC_OK) {
-     CmpiStatus s(&st);
-     throw s;
-   }
+    if (st.rc != CMPI_RC_OK) {
+        CmpiStatus s(&st);
+        throw s;
+    }
 
-   return CmpiEnumeration(en);
+    return CmpiEnumeration(en);
 }
 
 CmpiEnumeration 
@@ -129,35 +116,22 @@ CmpiBroker::enumInstances(const CmpiContext &context,
                           const CmpiObjectPath &path,
                           const char **properties)
 {
-   CmpiCppClient *client = makeCmpiCppClient(_data);
+    CMPIEnumeration *en;
 
-   if (client != NULL) {
-
-     try {
-       CmpiEnumeration result(client->enumInstances(context, path, properties));
-       delete client;
-       return result;
-     } catch (...) {
-       delete client;
-       throw;
-     }
-
-   } else {
-
-     CMPIEnumeration *en;
-
-     CMPIStatus st = { CMPI_RC_OK, NULL };
-     CMPIObjectPath * cop = path.toCMPI();
+    CMPIStatus st = { CMPI_RC_OK, NULL };
    
-     en = _data->bft->enumInstances(_data, context.toCMPI(), cop, properties, &st);
+    en = _data->bft->enumInstances(_data, 
+                                   context.toCMPI(), 
+                                   cop.toCMPI(), 
+                                   properties, 
+                                   &st);
    
-     if (st.rc != CMPI_RC_OK) {
-       CmpiStatus s(&st);
-       throw s;
-     }
-
-     return CmpiEnumeration(en);
-   }
+    if (st.rc != CMPI_RC_OK) {
+        CmpiStatus s(&st);
+        throw s;
+    }
+    
+    return CmpiEnumeration(en);
 }
 
 CmpiData 
@@ -167,26 +141,24 @@ CmpiBroker::invokeMethod(const CmpiContext &context,
                          const CmpiArgs &in,
                          CmpiArgs &out)
 {
-   CMPIData data;
+    CMPIData data;
 
-   CMPIStatus st = { CMPI_RC_OK, NULL };
-   CMPIObjectPath * cop = path.toCMPI();
+    CMPIStatus st = { CMPI_RC_OK, NULL };
      
-   data = _data->bft->invokeMethod( _data, 
-                                      context.toCMPI(), 
-                                      cop, 
-                                      method.str().c_str(),
-                                      in.toCMPI(),
-                                      out.toCMPI(),
-                                      &st);
+    data = _data->bft->invokeMethod(_data, 
+                                    context.toCMPI(), 
+                                    cop.toCMPI(), 
+                                    method.str().c_str(),
+                                    in.toCMPI(),
+                                    out.toCMPI(),
+                                    &st);
    
-   if (st.rc != CMPI_RC_OK) {
-     CmpiStatus s(&st);
-     throw s;
-   }
-
-   CMPIData *dataPtr = &data;
-   return CmpiData( dataPtr);
+    if (st.rc != CMPI_RC_OK) {
+        CmpiStatus s(&st);
+        throw s;
+    }
+   
+    return CmpiData(&dataPtr);
 }
 
 void
@@ -194,32 +166,34 @@ CmpiBroker::deliverIndication(const CmpiContext &context,
                               const CmpiName &nameSpace,
                               const CmpiInstance &indication)
 {
-   CMPIStatus st = _data->bft->deliverIndication(_data, 
-                                                 context.toCMPI(), 
-                                                 nameSpace.str().c_str(), 
-                                                 indication.toCMPI());
+    CMPIStatus st = _data->bft->deliverIndication(_data, 
+                                                  context.toCMPI(), 
+                                                  nameSpace.str().c_str(), 
+                                                  indication.toCMPI());
    
-   if (st.rc != CMPI_RC_OK) {
-     CmpiStatus s(&st);
-     throw s;
-   }
+    if (st.rc != CMPI_RC_OK) {
+        CmpiStatus s(&st);
+        throw s;
+    }
 }
 
 bool 
 CmpiBroker::classPathIsA(const CmpiObjectPath &path,
                          const string &parentClassName)
 {
-   CMPIStatus st = { CMPI_RC_OK, NULL };
-   CMPIObjectPath * cop = path.toCMPI();
+    CMPIStatus st = { CMPI_RC_OK, NULL };
    
-   CMPIBoolean isa = CMClassPathIsA(_data, cop, parentClassName.c_str(), &st);
+    CMPIBoolean isa = CMClassPathIsA(_data, 
+                                     cop.toCMPI(), 
+                                     parentClassName.c_str(), 
+                                     &st);
 
-   if (st.rc!=CMPI_RC_OK) {
-     CmpiStatus s(&st);
-     throw s;
-   }
-
-   return bool(isa);
+    if (st.rc != CMPI_RC_OK) {
+        CmpiStatus s(&st);
+        throw s;
+    }
+   
+    return bool(isa);
 }
 
 // Factory functions
@@ -268,7 +242,7 @@ CmpiBroker::makeCmpiDateTime(uint64_t binTime, bool isInterval)
 
     CMPIDateTime *dt = 
         _data->eft->newDateTimeFromBinary(_data, binTime, isInterval, 
-                                           &status);
+                                          &status);
 
     if (status.rc != CMPI_RC_OK)
         throw CmpiStatus(&status);
